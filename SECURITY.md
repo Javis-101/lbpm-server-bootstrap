@@ -2,11 +2,13 @@
 
 ## Supported code
 
-Only the current `main` source candidate is considered for security fixes. No public release is currently designated as supported.
+The immutable v1.0.3 artifact is the validated historical release line. Security fixes are developed on `main` and ship only in a new version after appropriate validation; the original v1.0.3 ZIP is never rewritten in place.
 
 ## Sensitive material
 
 Never commit credentials, SSH keys, tokens, private `bootstrap.env`, server addresses, hostnames, cloud instance identifiers, private paths, research RAW, or unredacted evidence archives.
+
+The v1.0.3 installer was validated with its documented default stack path. Do not supply `/`, a system directory, a relative path, or a dot-segment path as a custom installer prefix. Repository `main` adds a fail-closed prefix guard for the future v1.0.4 line.
 
 ## Reporting
 

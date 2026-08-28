@@ -171,6 +171,18 @@ def audit_repository(root: Path) -> list[str]:
             if project not in notices:
                 errors.append(f"THIRD_PARTY_NOTICE_MISSING: {project}")
 
+    validation_path = root / "docs/validation/v1.0.3.md"
+    if validation_path.is_file():
+        validation = validation_path.read_text(encoding="utf-8", errors="replace")
+        required_validation_markers = (
+            "ARTIFACT_IDENTITY=PASS",
+            "V1_0_3_VALIDATION=PASS",
+            "PUBLIC_RELEASE_ARTIFACT=PASS",
+            "CORRECTION_REASON=EVIDENCE_LAYER_MISINTERPRETATION",
+        )
+        if any(marker not in validation for marker in required_validation_markers):
+            errors.append("V1_0_3_VALIDATION_STATUS_INVALID")
+
     return sorted(set(errors))
 
 

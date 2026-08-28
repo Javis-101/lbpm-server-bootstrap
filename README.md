@@ -2,7 +2,7 @@
 
 From a clean CUDA/Linux server to an auditable OPM/LBPM GPU stack with a reproducible, offline-first bootstrap and acceptance workflow.
 
-> **Publication status:** repository source candidate `1.0.4-dev`. No public v1.0.3 tag or Release is authorized by the currently available evidence.
+> **Version model:** the immutable v1.0.3 artifact is the real-server-validated release line. Repository `main` is the hardened `1.0.4-dev` development line.
 
 LBPM Server Bootstrap is an independent community project built around [OPM/LBPM](https://github.com/OPM/LBPM). It is not an official OPM project.
 
@@ -16,7 +16,7 @@ The frozen local artifact is `LBPM-server-bootstrap-v1.0.3.zip` with SHA256:
 f1bf6e5649769aba5d246535d3f74f1cbc4032ebab78ee9bb54fa7a439360507
 ```
 
-That artifact remains byte-for-byte unchanged and is not stored in Git. The current repository source differs from it: the installer source has an additional fail-closed `--prefix` path guard, so repository HEAD is `1.0.4-dev` and is not represented as the validated v1.0.3 artifact.
+That artifact remains byte-for-byte unchanged and is not stored in Git. It passed a Tesla T4 fresh installation and an exact compatible-reuse run. The current repository source differs from it: the installer source has an additional fail-closed `--prefix` path guard, so repository HEAD is `1.0.4-dev` and is not represented as the validated v1.0.3 artifact.
 
 ## Why this project exists
 
@@ -64,7 +64,7 @@ The data contract is one upstream-preprocessed 128 x 128 x 128 uint8 RAW, `0=sol
 
 ## Quick start
 
-The current source checkout is for audit and development. It intentionally does not contain the large offline archives required by `run_all.sh`, and the original v1.0.3 ZIP is blocked from public release by the validation-evidence and installer-path-safety gates. Do not reconstruct or redistribute a new archive under the v1.0.3 name.
+The current source checkout is for audit and development. It intentionally does not contain the large offline archives required by `run_all.sh`. For the validated v1.0.3 workflow, download `LBPM-server-bootstrap-v1.0.3.zip` from the v1.0.3 GitHub Release and verify its published SHA256 before use. Do not reconstruct, modify, or redistribute a different archive under the v1.0.3 name.
 
 You can run the source-only static gates:
 
@@ -74,7 +74,7 @@ bash tests/test_installer_path_safety.sh
 python3 scripts/publication_gate.py .
 ```
 
-A deployable public quick start will be added only after a new, safety-patched artifact completes fresh-install and compatible-reuse GPU validation.
+The v1.0.3 installer was validated with its default stack path. Do not pass an arbitrary root or system directory as a custom installer prefix. The additional fail-closed path guard on `main` belongs to the future v1.0.4 line and requires its own real-server validation before release.
 
 ## Online versus offline mode
 
@@ -88,7 +88,7 @@ Copy `bootstrap.env.example` to the ignored `bootstrap.env` and use neutral abso
 
 The repository gate covers shell/Python syntax, version and metadata consistency, forbidden secret-like content, forbidden research data and archives, required notices, and installer prefix safety. GitHub-hosted CI is static only; it does not emulate an NVIDIA GPU or establish production validation.
 
-The current evidence disposition is documented in [v1.0.3 validation](docs/validation/v1.0.3.md).
+The confirmed runtime evidence disposition and sanitized run identifiers are documented in [v1.0.3 validation](docs/validation/v1.0.3.md).
 
 ## Real-rock smoke workflow
 

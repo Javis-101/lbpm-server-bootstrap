@@ -24,7 +24,12 @@ REQUIRED_FIXTURES = {
     "CONTRIBUTING.md": "# Contributing\n",
     ".gitignore": "*.raw\n*.zip\nbootstrap.env\n",
     "bootstrap.env.example": "STACK_DIR=/opt/lbpm-stack\n",
-    "docs/validation/v1.0.3.md": "PUBLIC_RELEASE_ARTIFACT=BLOCKED\n",
+    "docs/validation/v1.0.3.md": (
+        "ARTIFACT_IDENTITY=PASS\n"
+        "V1_0_3_VALIDATION=PASS\n"
+        "PUBLIC_RELEASE_ARTIFACT=PASS\n"
+        "CORRECTION_REASON=EVIDENCE_LAYER_MISINTERPRETATION\n"
+    ),
     "installer/lib/path_safety.sh": "validate_install_root() { return 0; }\n",
 }
 
@@ -81,6 +86,22 @@ class PublicationGateTests(unittest.TestCase):
             (root / "THIRD_PARTY_NOTICES.md").unlink()
             self.assertIn(
                 "MISSING_REQUIRED_FILE: THIRD_PARTY_NOTICES.md", audit_repository(root)
+            )
+
+    def test_build_time_pending_metadata_cannot_regress_release_status(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            make_candidate(root)
+            (root / "docs/validation/v1.0.3.md").write_text(
+                "ARTIFACT_IDENTITY=PASS\n"
+                "V1_0_3_GPU_VALIDATION_EVIDENCE=NOT_FOUND\n"
+                "PUBLIC_RELEASE_ARTIFACT=BLOCKED\n"
+                "OVERALL=NOT_READY\n",
+                encoding="utf-8",
+            )
+            self.assertIn(
+                "V1_0_3_VALIDATION_STATUS_INVALID",
+                audit_repository(root),
             )
 
     def test_gate_does_not_report_its_own_detection_literals_as_secrets(self) -> None:

@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this bootstrap workflow, cite this software and the upstream OPM/LBPM project."
+title: "LBPM Server Bootstrap"
+type: software
+version: "1.0.4-dev"
+authors:
+  - name: "LBPM Server Bootstrap contributors"
+repository-code: "https://github.com/Javis-101/lbpm-server-bootstrap"
+license: "GPL-3.0-only"
+keywords:
+  - lattice Boltzmann method
+  - digital rock
+  - CUDA
+  - reproducible research

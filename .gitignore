@@ -1,0 +1,51 @@
+# Private/local config
+bootstrap.env
+.env
+.env.*
+*.local
+
+# Research rock data
+*.raw
+*.dat
+*.tif
+*.tiff
+*.vtk
+*.vti
+
+# LBPM outputs
+Restart.*
+ID.*.raw
+id_t*.raw
+
+# Runtime output
+runs/
+logs/
+evidence/
+output/
+outputs/
+
+# Offline source archives and release payloads
+*.tar.gz
+*.tgz
+*.zip
+*.sha256
+
+# Build/install
+build/
+install/
+LBPM_BUILD/
+LBPM_INSTALL/
+
+# Credentials
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# Python/editor/OS
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+.vscode/
+.idea/

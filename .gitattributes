@@ -1,0 +1,15 @@
+* text=auto
+.gitattributes text eol=lf
+
+*.sh text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.cff text eol=lf
+VERSION text eol=lf
+LICENSE text eol=lf
+
+# Preserve the audited patch byte-for-byte; its fixed SHA256 is a contract.
+*.patch -text -whitespace

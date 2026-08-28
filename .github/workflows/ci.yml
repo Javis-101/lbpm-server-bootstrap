@@ -1,0 +1,29 @@
+name: static-publication-gates
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run source publication suite
+        run: bash tests/test_wsl_static.sh
+      - name: Confirm publication policy
+        run: python3 scripts/publication_gate.py .
+
+  scope-boundary:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: State CI boundary
+        run: |
+          printf '%s\n' \
+            'Static CI does not execute CUDA, bind an NVIDIA GPU, or establish physical validation.'

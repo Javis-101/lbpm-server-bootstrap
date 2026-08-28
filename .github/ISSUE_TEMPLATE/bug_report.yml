@@ -1,0 +1,34 @@
+name: Bug report
+description: Report a reproducible non-sensitive defect.
+title: "[bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Do not attach credentials, private configuration, research RAW, or unredacted server evidence.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Sanitized environment
+      description: Include OS, architecture, GPU/CUDA, and compiler versions without hostname, IP, account, or provider IDs.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and observed result
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected fail-closed behavior
+    validations:
+      required: true

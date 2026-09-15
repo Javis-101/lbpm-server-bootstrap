@@ -1,0 +1,21 @@
+# Fill these on another compatible Linux NVIDIA host. No automatic reinstall.
+[paths]
+lbpm_root = "${HOME}/LBPM-stack-v207"
+raw_root = "${HOME}/rocks/pool/raw"
+case_root = "${HOME}/lbpm-simulations"
+output_root = "${HOME}/lbpm-production-data"
+prepare_case = "${HOME}/LBPM-postinstall-SOP-v1.3.2/bin/prepare_case.sh"
+# acceptance_report = "${HOME}/lbpm-validation/acceptance_report.json"
+# lbpm_binary = "/specific/install/bin/lbpm_color_simulator"
+# mpirun = "/specific/openmpi/bin/mpirun"
+# env_script = "/specific/lbpm_env.sh"
+# build_manifest = "/specific/LBPM_BUILD_MANIFEST.txt"
+# source_root = "/specific/src/LBPM"
+# libzstd = "/specific/libzstd.so.1"
+[runtime]
+gpu = "0"
+max_jobs = 8
+[storage]
+compress_below_gib = 10.0
+compress_until_gib = 15.0
+pause_below_gib = 5.0

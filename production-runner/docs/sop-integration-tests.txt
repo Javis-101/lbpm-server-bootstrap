@@ -1,0 +1,7 @@
+test_pinned_sop_source_identity (test_bootstrap_bridge.BootstrapBridge.test_pinned_sop_source_identity) ... ok
+test_real_sop_private_config_source_roi_and_reuse (test_bootstrap_bridge.BootstrapBridge.test_real_sop_private_config_source_roi_and_reuse) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 4.317s
+
+OK

@@ -1,0 +1,33 @@
+# Machine preset only: editable without changing Python/Shell source.
+# Relative paths resolve relative to THIS TOML file, not the current directory.
+[paths]
+lbpm_root = "/root/rivermind-data/LBPM-stack-v207"
+raw_root = "/root/rivermind-data/rocks/pool/raw"
+case_root = "/root/rivermind-data/lbpm-simulations"
+output_root = "/root/rivermind-data/lbpm-production-data"
+# Discover a unique installed SOP below lbpm_root's parent; multiple matches
+# require an explicit --prepare-case. Do not select a random historical run.
+prepare_case = ""
+# Other executable paths derive from lbpm_root or scoped PATH discovery.
+# acceptance_report = "/your/validation/acceptance_report.json"
+
+[runtime]
+gpu = "0"
+max_jobs = 8
+refresh_seconds = 5
+poll_seconds = 1.0
+stall_seconds = 900
+retry_interrupted_max = 3
+
+[storage]
+compress_below_gib = 10.0
+compress_until_gib = 15.0
+pause_below_gib = 5.0
+safety_gib = 2.0
+compression_level = 3
+release_verified_raw = true
+
+[dataset]
+expected_count = 1200
+families = ["41", "44", "46", "49", "57", "60"]
+per_family = 200

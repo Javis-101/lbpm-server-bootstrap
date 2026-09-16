@@ -14,7 +14,7 @@
   "runner/state.py": "6a5a493675b21d2379c93c97598e24886c58ad7cf1ec0cf48af29fc89d191fe1",
   "runner/supervisor.py": "cbdb422cf616ba53b9232edf509cbd6eb8fc7965e190b02aae752a1e9b57ebe6",
   "runner/util.py": "7981be2c0f12a677567320bbe881fba91b90cf2fd6161ee93bf2b1c538e01a5a",
-  "runner/worker.py": "9247b63fde55e3b0d84c3043563e00f38858cc79b53bc7271005debb98bad23a",
+  "runner/worker.py": "c1af8e4c96a5af92d0a760c03f1f190568628d9e65fcef07767bb2f61179e2f5",
   "runner/zstd_stream.py": "c181328e7dea95a6ac2b842521853f020c6c1c90dfa38e35f181eae34d0ee6c5",
   "runner_cli.py": "8299c0ea7714558257e832a60eba743f682c5b12cd5758eb99b71412bd9c2460",
   "third_party/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",

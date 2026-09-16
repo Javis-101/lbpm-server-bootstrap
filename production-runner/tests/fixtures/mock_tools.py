@@ -51,6 +51,12 @@ elif mode=='mpirun':
     for idx in range(1,cap//cp+1):
         if behavior=='nan' and idx==3:
             print('SubPhase.cpp: NaN encountered',flush=True); reg.unlink(missing_ok=True); sys.exit(134)
+        if behavior=='nan_wait' and idx==3:
+            print('SubPhase.cpp: NaN encountered',flush=True)
+            # Keep this CPU-only mock client registered briefly so the Runner can
+            # exercise targeted MPS containment before an abnormal client exit.
+            time.sleep(5)
+            reg.unlink(missing_ok=True); sys.exit(134)
         if behavior=='stall': time.sleep(120)
         if behavior=='cap':
             a[3:131][pore]=1 if idx%2 else 2

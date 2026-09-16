@@ -1,5 +1,15 @@
 # Runner changelog
 
+## 1.1.0 — 2026-09-16
+
+- Add the new `GW-Ca1p5e4-R2-v1` production protocol preset: `Ca=1.5e-4`, aggressive STANDARD (`start=0.5 PVI`, `max_dsg=0.0030`, `range_sg=0.0060`, `max_flip=0.0100`, 4 confirmations), unchanged ACCEPTED, and `max_pvi=3.6`.
+- The new protocol produces `CHECKPOINT_STEPS=22124` and `MAX_STEPS=796464` under the frozen Runner time-grid formula. It is a new protocol identity; `Ca=2e-4` results are historical evidence and must not be migrated into the new formal dataset.
+- Add fail-safe numerical-failure isolation. When a numerical failure is detected while its MPS client is still uniquely identifiable, Runner attempts targeted MPS v2 termination. A case is isolated without poisoning its epoch only after explicit `safe_context_termination=true`.
+- Preserve the old conservative epoch-fault/quarantine path whenever targeted containment cannot be confirmed. Numerical failures remain invalid scientific labels and cannot publish a completion marker.
+- Add CPU integration coverage for both safely isolated numerical failures and the conservative fallback path. Real NVIDIA MPS and LBPM physics still require target-GPU Canary validation.
+
+Validation boundary: engineering code candidate; NOT a real-GPU or scientific validation certificate.
+
 ## 1.0.1 — 2026-09-15
 
 - F-01: central result validation at commit, startup recovery and export. A corrupt or missing endpoint is not marked valid; completion markers are moved to a quarantine evidence directory, not erased.

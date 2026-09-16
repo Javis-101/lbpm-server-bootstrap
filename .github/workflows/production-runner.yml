@@ -30,6 +30,9 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Install CPU test dependencies
         run: python -m pip install 'numpy>=1.20'
+      - name: Report code hashes
+        working-directory: production-runner
+        run: sha256sum runner/worker.py VERSION runner/__init__.py
       - name: Verify package code inventory
         working-directory: production-runner
         run: bash run.sh verify-package

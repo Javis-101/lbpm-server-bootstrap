@@ -1,0 +1,72 @@
+name: production-runner-engineering
+on:
+  push:
+    paths:
+      - 'production-runner/**'
+      - 'sop/**'
+      - 'installer/**'
+      - '.github/workflows/production-runner.yml'
+  pull_request:
+    paths:
+      - 'production-runner/**'
+      - 'sop/**'
+      - 'installer/**'
+      - '.github/workflows/production-runner.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cpu-contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.9', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install CPU test dependencies
+        run: python -m pip install 'numpy>=1.20'
+      - name: Verify package code inventory
+        working-directory: production-runner
+        run: bash run.sh verify-package
+      - name: Run Runner and actual SOP interface regressions (no CUDA)
+        working-directory: production-runner
+        env:
+          LBPM_BOOTSTRAP_SOURCE: ${{ github.workspace }}
+        run: |
+          set -o pipefail
+          python -m unittest discover -s tests -v 2>&1 | tee "$RUNNER_TEMP/runner-tests-${{ matrix.python }}.txt"
+      - name: Build source-only reproducible Runner ZIP
+        if: matrix.python == '3.12'
+        working-directory: production-runner
+        run: python tools/package.py --out "$RUNNER_TEMP/runner-artifacts"
+      - name: Verify the extracted ZIP
+        if: matrix.python == '3.12'
+        run: |
+          set -e
+          cd "$RUNNER_TEMP/runner-artifacts"
+          sha256sum -c *.zip.sha256
+          unzip -q *.zip -d unpacked
+          cd unpacked/LBPM-Production-Runner-*
+          sha256sum -c SHA256SUMS
+          bash run.sh verify-package
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: runner-test-log-python-${{ matrix.python }}
+          path: ${{ runner.temp }}/runner-tests-${{ matrix.python }}.txt
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        if: success() && matrix.python == '3.12'
+        with:
+          name: LBPM-Production-Runner-v1.0.1
+          path: |
+            ${{ runner.temp }}/runner-artifacts/*.zip
+            ${{ runner.temp }}/runner-artifacts/*.zip.sha256
+          if-no-files-found: error
+      - name: State validation boundary
+        run: echo 'CPU engineering and actual SOP interface tests only. Real NVIDIA MPS, LBPM physics and 1200-case production have NOT been validated by this workflow.'

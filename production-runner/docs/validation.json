@@ -1,0 +1,57 @@
+{
+  "runner_version": "1.0.1",
+  "base_repository": "Javis-101/lbpm-server-bootstrap",
+  "base_commit": "8acdb62a9768911250474003597f595b785ac266",
+  "original_zip_sha256": "4ca81be2706deb4f4db2e6aec175b97278df386e8f85d127557014a2fd706075",
+  "python": "3.13.5",
+  "platform": "Linux x86_64",
+  "engineering_suite": {
+    "tests": 60,
+    "failures": 0,
+    "errors": 0,
+    "exit_code": 0,
+    "seconds": 267.44
+  },
+  "original_review_reproducers": {
+    "before": {
+      "tests": 2,
+      "failures": 2
+    },
+    "after": {
+      "tests": 2,
+      "failures": 0,
+      "exit_code": 0,
+      "seconds": 62.721
+    },
+    "not_added_to_59_count": true
+  },
+  "real_sop_scripts": "Five exact repository scripts exercised; only MPI/decomposition replaced by a CPU file-contract stub",
+  "gpu_validation": "NOT_PERFORMED",
+  "installer_compilation": "NOT_PERFORMED",
+  "full_bootstrap_root_suite": "NOT_PERFORMED_LOCALLY; requires complete checkout",
+  "github_upload": "BLOCKED_BY_TOOL_SAFETY; branch only, no Runner source commit",
+  "logs_sha256": {
+    "concurrent-old-package-repeat.txt": "635318f9bb082259a102775ba7616340339d49b54fcc93b0f30fc4696beac10c",
+    "review-regressions-after.txt": "8f43bd1417a73a247d7738873d545ced6d54c43772d1cf300e09c3f2c8369bdf",
+    "sop-integration-tests.txt": "e2588cec63cb2ce43796f82d32a1199126d917e56108e8f19f83dfbb4a0b9f78",
+    "empty-fault-after.txt": "0a5812c36f915b8e3d21d76d42834df80a56f334a3ff7f15a5426ca64e6f736c",
+    "repeated-recovery-tests.txt": "7a672df0c1c321274167db8e4e06853bd927a1b17092e2555943e6103bd034b5",
+    "local-test-results.txt": "72786aa780a8438463a2ecc5415afd3a0e7750e03e28006988df8c13c9db7f03",
+    "review-regressions-before.txt": "9a1f18a2cae9fa3ca0cc2fe63d307ed639b419979c58ee83ff25143080e0027a",
+    "empty-fault-before.txt": "e8450acf296345ab2ee27f021312dfc72977e84ba18306a303aad2ca07d5d72f"
+  },
+  "repeatability_observation": {
+    "concurrent_earlier_package_run": {
+      "tests": 59,
+      "failures": 1,
+      "detail": "One recovery fixture entered protective PAUSED rather than COMPLETE. This earlier package was run concurrently with a full source suite; exact pause cause was not retained by the original fixture."
+    },
+    "targeted_subsequent_repeats": {
+      "tests": 4,
+      "failures": 0,
+      "seconds": 137.257
+    },
+    "status": "NOT_REPRODUCED_IN_FOUR_TARGETED_REPEATS; do not claim all repetitions passed or infer GPU safety"
+  },
+  "log_format_note": "Public text log copies remove trailing whitespace only; byte-original logs are retained in the external engineering evidence archive."
+}

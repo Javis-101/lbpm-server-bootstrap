@@ -1,0 +1,32 @@
+test_corrupt_phase_is_not_exported_as_valid_on_resume (__main__.ReviewRegressions.test_corrupt_phase_is_not_exported_as_valid_on_resume) ... CORRUPTION_EVIDENCE {"status_counts": {"OUTPUT_FAILED": 1, "SUCCEEDED_STANDARD": 3}, "index_row": {"case_id": "41_002", "family": "41", "valid": "True", "status": "SUCCEEDED_STANDARD", "input_relative": "41_002.raw", "input_sha256": "db4bdb5196d1239507431b9e931b43ce3b7dad26ae7e9ca1d58a0b490a265603", "sg_endpoint": "0.2", "stop_pvi": "1.5", "stop_reason": "STANDARD", "phase_roi_relative": "cases/41_002/attempts/attempt_0001/result/phase_final_roi.npy", "attempt_relative": "cases/41_002/attempts/attempt_0001", "protocol_sha256": "42c44fe2bce96d643eb467ef8e1658805ebb3b86f367607eb3b2ea464c94cfb6"}}
+FAIL
+test_resume_does_not_commit_outcome_from_faulted_epoch (__main__.ReviewRegressions.test_resume_does_not_commit_outcome_from_faulted_epoch) ... EPOCH_EVIDENCE {"old": "cases/41_002/attempts/attempt_0001", "new": "cases/41_002/attempts/attempt_0001", "fault_time": 1789482755684599544}
+FAIL
+
+======================================================================
+FAIL: test_corrupt_phase_is_not_exported_as_valid_on_resume (__main__.ReviewRegressions.test_corrupt_phase_is_not_exported_as_valid_on_resume)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/lbpm-integration-work/audit/runner-v1.0.0-review/test_review_regressions.py", line 22, in test_corrupt_phase_is_not_exported_as_valid_on_resume
+    self.assertEqual(row['valid'],'False','A corrupt phase must never be exported as a valid label')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'True' != 'False'
+- True
++ False
+ : A corrupt phase must never be exported as a valid label
+
+======================================================================
+FAIL: test_resume_does_not_commit_outcome_from_faulted_epoch (__main__.ReviewRegressions.test_resume_does_not_commit_outcome_from_faulted_epoch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/lbpm-integration-work/audit/runner-v1.0.0-review/test_review_regressions.py", line 36, in test_resume_does_not_commit_outcome_from_faulted_epoch
+    self.assertNotEqual(new['attempt_relative'],com['attempt_relative'],
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        'Success written after a peer GPU fault must be quarantined, not committed during resume')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'cases/41_002/attempts/attempt_0001' == 'cases/41_002/attempts/attempt_0001' : Success written after a peer GPU fault must be quarantined, not committed during resume
+
+----------------------------------------------------------------------
+Ran 2 tests in 53.079s
+
+FAILED (failures=2)

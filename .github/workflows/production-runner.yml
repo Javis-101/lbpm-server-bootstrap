@@ -30,9 +30,6 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Install CPU test dependencies
         run: python -m pip install 'numpy>=1.20'
-      - name: Report code hashes
-        working-directory: production-runner
-        run: sha256sum runner/worker.py VERSION runner/__init__.py
       - name: Verify package code inventory
         working-directory: production-runner
         run: bash run.sh verify-package
@@ -66,7 +63,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: success() && matrix.python == '3.12'
         with:
-          name: LBPM-Production-Runner-v1.0.1
+          name: LBPM-Production-Runner-v1.1.0
           path: |
             ${{ runner.temp }}/runner-artifacts/*.zip
             ${{ runner.temp }}/runner-artifacts/*.zip.sha256

@@ -136,14 +136,31 @@ def run_worker(root,attempt_rel):
         pr=read_json(d/'process.json'); pr['mpirun']=proc_identity(process.pid); atomic_json(d/'process.json',pr)
         append_event(event,'LBPM_START',pid=process.pid,argv=args)
         stopping=False; stop_control_error=None; stop_try_at=0.0; interrupted_reason=None; flux=None
+        numerical_containment_attempted=False; numerical_isolated=False; numerical_containment_error=None
         while True:
             text=logtext(d/'run.log'); rc=process.poll()
             numerical=bool(NUMERIC.search(text))
             if flux is None:
                 mm=re.search(r'\bflux\s*=\s*([+\-\deE.]+)',text)
                 if mm: flux=float(mm[1])
-            if numerical:
-                first_fault(faultpath,{'attempt_relative':attempt_rel,'time_ns':time.time_ns(),'reason':'NUMERICAL_FAILED'})
+            if numerical and not numerical_containment_attempted:
+                numerical_containment_attempted=True
+                if rc is None and not faultpath.exists():
+                    try:
+                        candidate=mps.terminate(token,d,c['paths']['lbpm_binary'])
+                        if candidate.get('safe_context_termination') is not True:
+                            raise RuntimeError('MPS_NUMERICAL_CONTAINMENT_NOT_CONFIRMED')
+                        safe=candidate; numerical_isolated=True; stopping=True
+                        atomic_json(d/'mps_termination.json',safe)
+                        append_event(event,'SAFE_MPS_TERMINATION',**safe)
+                        append_event(event,'NUMERICAL_FAILURE_ISOLATED',safe_context_termination=True)
+                    except Exception as exc:
+                        numerical_containment_error=str(exc)
+                        first_fault(faultpath,{'attempt_relative':attempt_rel,'time_ns':time.time_ns(),'reason':'NUMERICAL_FAILED'})
+                        append_event(event,'NUMERICAL_FAILURE_CONTAINMENT_FAILED',detail=numerical_containment_error)
+                else:
+                    numerical_containment_error='MPS_CLIENT_NOT_SAFELY_CONTAINABLE'
+                    first_fault(faultpath,{'attempt_relative':attempt_rel,'time_ns':time.time_ns(),'reason':'NUMERICAL_FAILED'})
             fault=read_json(faultpath,{})
             other_fault=fault and fault.get('attempt_relative')!=attempt_rel
             if other_fault: interrupted_reason='MPS_PEER_ABORT_QUARANTINE'
@@ -210,8 +227,10 @@ def run_worker(root,attempt_rel):
         atomic_bytes(d/'exit_code.txt',(str(rc)+'\n').encode()); atomic_bytes(d/'wall_seconds.txt',(str(time.time()-start)+'\n').encode())
         text=logtext(d/'run.log'); classification=classify_exit(rc,text)
         if classification=='NUMERICAL_FAILED':
-            first_fault(faultpath,{'attempt_relative':attempt_rel,'time_ns':time.time_ns(),'reason':classification})
-            outcome(classification,exit_code=rc); return
+            if not numerical_isolated:
+                first_fault(faultpath,{'attempt_relative':attempt_rel,'time_ns':time.time_ns(),'reason':classification})
+            outcome(classification,exit_code=rc,numerical_isolated=numerical_isolated,
+                    containment_error=numerical_containment_error); return
         fault=read_json(faultpath,{})
         if interrupted_reason or (fault and fault.get('attempt_relative')!=attempt_rel):
             outcome('INTERRUPTED',exit_code=rc,detail=interrupted_reason or 'MPS_PEER_ABORT_QUARANTINE'); return

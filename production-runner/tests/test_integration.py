@@ -94,6 +94,24 @@ class Integration(unittest.TestCase):
         self.assertEqual(s['counts'].get('NUMERICAL_FAILED'),1)
         self.assertEqual(s['valid'],3)
         self.assertFalse((self.root/'cases/41_002/complete.json').exists())
+        self.assertTrue(list(self.root.glob('epochs/*/fault.json')))
+        self.assertGreater(len(list(self.root.glob('cases/*/attempts/*/job.json'))),4)
+
+    def test_safe_nan_isolation_keeps_mps_peers_running(self):
+        atomic_json(self.base/'modes.json',{'41_002':'nan_wait'})
+        self.cmd('prepare'); self.cmd('start'); s=self.wait_complete(40)
+        self.assertEqual(s['counts'].get('NUMERICAL_FAILED'),1)
+        self.assertEqual(s['counts'].get('INTERRUPTED',0),0)
+        self.assertEqual(s['valid'],3)
+        self.assertFalse((self.root/'cases/41_002/complete.json').exists())
+        self.assertFalse(list(self.root.glob('epochs/*/fault.json')))
+        self.assertEqual(len(list(self.root.glob('cases/*/attempts/*/job.json'))),4)
+        calls=(self.base/'control_calls.log').read_text()
+        self.assertIn('terminate_client ',calls)
+        failed=list((self.root/'cases/41_002/attempts').glob('attempt_*'))
+        self.assertEqual(len(failed),1)
+        self.assertFalse((failed[0]/'result/result.json').exists())
+
     def test_supervisor_crash_adopts_existing_attempts(self):
         self.cmd('prepare'); self.cmd('start')
         controller=read_json(self.root/'controller.json')['process']

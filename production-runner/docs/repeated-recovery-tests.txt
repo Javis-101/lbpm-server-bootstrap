@@ -1,0 +1,9 @@
+test_existing_commit_in_faulted_epoch_is_quarantined (__main__.Capture.test_existing_commit_in_faulted_epoch_is_quarantined) ... ok
+test_existing_commit_in_faulted_epoch_is_quarantined (__main__.Capture.test_existing_commit_in_faulted_epoch_is_quarantined) ... ok
+test_existing_commit_in_faulted_epoch_is_quarantined (__main__.Capture.test_existing_commit_in_faulted_epoch_is_quarantined) ... ok
+test_existing_commit_in_faulted_epoch_is_quarantined (__main__.Capture.test_existing_commit_in_faulted_epoch_is_quarantined) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 137.257s
+
+OK

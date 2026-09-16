@@ -1,0 +1,80 @@
+test_pinned_sop_source_identity (test_bootstrap_bridge.BootstrapBridge.test_pinned_sop_source_identity) ... ok
+test_real_sop_private_config_source_roi_and_reuse (test_bootstrap_bridge.BootstrapBridge.test_real_sop_private_config_source_roi_and_reuse) ... ok
+test_accepted_not_before_32 (test_core.CoreContracts.test_accepted_not_before_32) ... ok
+test_archive_corruption_never_deletes_raw (test_core.CoreContracts.test_archive_corruption_never_deletes_raw) ... ok
+test_archive_manifest_rejects_traversal (test_core.CoreContracts.test_archive_manifest_rejects_traversal) ... ok
+test_archive_roundtrip_and_restore (test_core.CoreContracts.test_archive_roundtrip_and_restore) ... ok
+test_atomic_json (test_core.CoreContracts.test_atomic_json) ... ok
+test_cap_not_convergence (test_core.CoreContracts.test_cap_not_convergence) ... ok
+test_config_precedence_and_relative_path (test_core.CoreContracts.test_config_precedence_and_relative_path) ... ok
+test_config_typo_rejected (test_core.CoreContracts.test_config_typo_rejected) ... ok
+test_disk_hysteresis (test_core.CoreContracts.test_disk_hysteresis) ... ok
+test_even_timestep_and_cap (test_core.CoreContracts.test_even_timestep_and_cap) ... ok
+test_replay_rejects_missing_checkpoint (test_core.CoreContracts.test_replay_rejects_missing_checkpoint) ... ok
+test_standard_first_stop_is_15 (test_core.CoreContracts.test_standard_first_stop_is_15) ... ok
+test_cap_reason_is_distinct (test_integration.Integration.test_cap_reason_is_distinct) ... ok
+test_dead_worker_attempt_is_restarted_not_entire_queue (test_integration.Integration.test_dead_worker_attempt_is_restarted_not_entire_queue) ... ok
+test_full_queue_earlystop_and_idempotent_resume (test_integration.Integration.test_full_queue_earlystop_and_idempotent_resume) ... ok
+test_nan_not_labeled_success_and_peer_recovery (test_integration.Integration.test_nan_not_labeled_success_and_peer_recovery) ... ok
+test_pause_drain_keeps_current_results_then_resume (test_integration.Integration.test_pause_drain_keeps_current_results_then_resume) ... ok
+test_storage_pressure_archives_all_without_discarding_frames (test_integration.Integration.test_storage_pressure_archives_all_without_discarding_frames) ... ok
+test_supervisor_crash_adopts_existing_attempts (test_integration.Integration.test_supervisor_crash_adopts_existing_attempts) ... ok
+test_reproducible_package_and_all_member_hashes (test_package.Package.test_reproducible_package_and_all_member_hashes) ... ok
+test_error_classifier (test_pipeline.PipelineContracts.test_error_classifier) ... ok
+test_fault_record_first_writer_wins (test_pipeline.PipelineContracts.test_fault_record_first_writer_wins) ... ok
+test_task_queue_family_interleaved (test_pipeline.PipelineContracts.test_task_queue_family_interleaved) ... ok
+test_completed_preparation_never_replaced (test_preparation_recovery.PreparationRecovery.test_completed_preparation_never_replaced) ... ok
+test_owned_incomplete_preparation_is_preserved_and_requeued (test_preparation_recovery.PreparationRecovery.test_owned_incomplete_preparation_is_preserved_and_requeued) ... ok
+test_sop_honors_explicit_mpi_and_binary_directories (test_preparation_recovery.PreparationRecovery.test_sop_honors_explicit_mpi_and_binary_directories) ... ok
+test_unknown_existing_preparation_never_moved (test_preparation_recovery.PreparationRecovery.test_unknown_existing_preparation_never_moved) ... ok
+test_bad_commit_hash_is_not_exported (test_result_guard.ResultGuard.test_bad_commit_hash_is_not_exported) ... ok
+test_clean_result_is_exported (test_result_guard.ResultGuard.test_clean_result_is_exported) ... ok
+test_corrupt_same_size_file_invalidates_cached_hash (test_result_guard.ResultGuard.test_corrupt_same_size_file_invalidates_cached_hash) ... ok
+test_fault_after_completed_result_does_not_reject_it (test_result_guard.ResultGuard.test_fault_after_completed_result_does_not_reject_it) ... ok
+test_fault_before_or_at_end_blocks_commit (test_result_guard.ResultGuard.test_fault_before_or_at_end_blocks_commit) ... ok
+test_in_memory_outcome_cannot_override_disk_evidence (test_result_guard.ResultGuard.test_in_memory_outcome_cannot_override_disk_evidence) ... ok
+test_known_output_failure_never_overruled_by_marker (test_result_guard.ResultGuard.test_known_output_failure_never_overruled_by_marker) ... ok
+test_malformed_completion_marker_is_invalid_not_whole_export_crash (test_result_guard.ResultGuard.test_malformed_completion_marker_is_invalid_not_whole_export_crash) ... ok
+test_missing_epoch_and_unknown_fault_time_fail_closed (test_result_guard.ResultGuard.test_missing_epoch_and_unknown_fault_time_fail_closed) ... ok
+test_missing_required_output_is_rejected (test_result_guard.ResultGuard.test_missing_required_output_is_rejected) ... ok
+test_original_input_identity_is_required (test_result_guard.ResultGuard.test_original_input_identity_is_required) ... ok
+test_outcome_epoch_cannot_be_substituted (test_result_guard.ResultGuard.test_outcome_epoch_cannot_be_substituted) ... ok
+test_corrupt_phase_resume_never_exports_valid (test_result_recovery.ResultRecovery.test_corrupt_phase_resume_never_exports_valid) ... ok
+test_existing_commit_in_faulted_epoch_is_quarantined (test_result_recovery.ResultRecovery.test_existing_commit_in_faulted_epoch_is_quarantined) ... FAIL
+test_faulted_outcome_resume_restarts_attempt (test_result_recovery.ResultRecovery.test_faulted_outcome_resume_restarts_attempt) ... ok
+test_close_event_is_not_open_event (test_runtime.RuntimeContracts.test_close_event_is_not_open_event) ... ok
+test_mps_ps_parser (test_runtime.RuntimeContracts.test_mps_ps_parser) ... ok
+test_mps_success_requires_explicit_zero (test_runtime.RuntimeContracts.test_mps_success_requires_explicit_zero) ... ok
+test_read_frame_bad_label (test_runtime.RuntimeContracts.test_read_frame_bad_label) ... ok
+test_read_frame_geometry_mismatch (test_runtime.RuntimeContracts.test_read_frame_geometry_mismatch) ... ok
+test_state_transition_and_reopen (test_runtime.RuntimeContracts.test_state_transition_and_reopen) ... ok
+test_archive_resume_release_duplicates (test_safety.Safety.test_archive_resume_release_duplicates) ... ok
+test_endpoint_link_is_byte_identical_without_extra_copy (test_safety.Safety.test_endpoint_link_is_byte_identical_without_extra_copy) ... ok
+test_mps_refusal_never_sends_signal (test_safety.Safety.test_mps_refusal_never_sends_signal) ... ok
+test_mps_signal_only_after_successful_response (test_safety.Safety.test_mps_signal_only_after_successful_response) ... ok
+test_no_release_on_modified_raw (test_safety.Safety.test_no_release_on_modified_raw) ... ok
+test_nonfinite_tau_rejected (test_safety.Safety.test_nonfinite_tau_rejected) ... ok
+test_restore_never_overwrites (test_safety.Safety.test_restore_never_overwrites) ... ok
+test_sop_uses_external_env_without_editing_source (test_safety.Safety.test_sop_uses_external_env_without_editing_source) ... ok
+test_truncated_archive_does_not_release (test_safety.Safety.test_truncated_archive_does_not_release) ... ok
+
+======================================================================
+FAIL: test_existing_commit_in_faulted_epoch_is_quarantined (test_result_recovery.ResultRecovery.test_existing_commit_in_faulted_epoch_is_quarantined)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/lbpm-integration-work/release-extracted/LBPM-Production-Runner-v1.0.1/tests/test_result_recovery.py", line 57, in test_existing_commit_in_faulted_epoch_is_quarantined
+    self.cmd('resume'); self.wait_complete(60)
+                        ~~~~~~~~~~~~~~~~~~^^^^
+  File "/mnt/data/lbpm-integration-work/release-extracted/LBPM-Production-Runner-v1.0.1/tests/test_integration.py", line 73, in wait_complete
+    self.assertEqual(s['mode'],'COMPLETE',json.dumps(s)+ '\n'+(self.root/'supervisor.log').read_text(errors='replace'))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'PAUSED' != 'COMPLETE'
+- PAUSED
++ COMPLETE
+ : {"time": "2026-09-15T15:02:56+00:00", "mode": "PAUSED", "total": 4, "terminal": 3, "valid": 3, "counts": {"SUCCEEDED_STANDARD": 3, "INTERRUPTED": 1}, "active": [], "session_elapsed_seconds": 8.17342734336853, "eta_seconds_estimate": null, "eta_scope": "all inputs processed, not all valid labels; rough session throughput", "free_gib": 29.064250946044922, "gpu": {"utilization_percent": "80", "memory_used_mib": "1000", "memory_total_mib": "24564", "power_watts": "100"}, "archive": {"active": false, "attempt": null, "pressure_active": false, "session_released_bytes": 0, "free_gib": 29.064250946044922}, "controller": {"pid": 5404, "start_ticks": "204112", "boot_id": "94dd7383-a8df-46c5-a8d5-8d3b213f4478", "pid_namespace": "pid:[4026532199]"}, "safe_to_stop": true}
+
+
+----------------------------------------------------------------------
+Ran 59 tests in 262.411s
+
+FAILED (failures=1)

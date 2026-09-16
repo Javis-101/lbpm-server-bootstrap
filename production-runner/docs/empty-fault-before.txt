@@ -1,0 +1,58 @@
+test_bad_commit_hash_is_not_exported (test_result_guard.ResultGuard.test_bad_commit_hash_is_not_exported) ... ok
+test_clean_result_is_exported (test_result_guard.ResultGuard.test_clean_result_is_exported) ... ok
+test_corrupt_same_size_file_invalidates_cached_hash (test_result_guard.ResultGuard.test_corrupt_same_size_file_invalidates_cached_hash) ... ok
+test_existing_empty_fault_record_is_not_treated_as_absent (test_result_guard.ResultGuard.test_existing_empty_fault_record_is_not_treated_as_absent) ...
+  test_existing_empty_fault_record_is_not_treated_as_absent (test_result_guard.ResultGuard.test_existing_empty_fault_record_is_not_treated_as_absent) (payload={}) ... FAIL
+  test_existing_empty_fault_record_is_not_treated_as_absent (test_result_guard.ResultGuard.test_existing_empty_fault_record_is_not_treated_as_absent) (payload=None) ... FAIL
+  test_existing_empty_fault_record_is_not_treated_as_absent (test_result_guard.ResultGuard.test_existing_empty_fault_record_is_not_treated_as_absent) (payload=[]) ... FAIL
+  test_existing_empty_fault_record_is_not_treated_as_absent (test_result_guard.ResultGuard.test_existing_empty_fault_record_is_not_treated_as_absent) (payload=False) ... FAIL
+test_fault_after_completed_result_does_not_reject_it (test_result_guard.ResultGuard.test_fault_after_completed_result_does_not_reject_it) ... ok
+test_fault_before_or_at_end_blocks_commit (test_result_guard.ResultGuard.test_fault_before_or_at_end_blocks_commit) ... ok
+test_in_memory_outcome_cannot_override_disk_evidence (test_result_guard.ResultGuard.test_in_memory_outcome_cannot_override_disk_evidence) ... ok
+test_known_output_failure_never_overruled_by_marker (test_result_guard.ResultGuard.test_known_output_failure_never_overruled_by_marker) ... ok
+test_malformed_completion_marker_is_invalid_not_whole_export_crash (test_result_guard.ResultGuard.test_malformed_completion_marker_is_invalid_not_whole_export_crash) ... ok
+test_missing_epoch_and_unknown_fault_time_fail_closed (test_result_guard.ResultGuard.test_missing_epoch_and_unknown_fault_time_fail_closed) ... ok
+test_missing_required_output_is_rejected (test_result_guard.ResultGuard.test_missing_required_output_is_rejected) ... ok
+test_original_input_identity_is_required (test_result_guard.ResultGuard.test_original_input_identity_is_required) ... ok
+test_outcome_epoch_cannot_be_substituted (test_result_guard.ResultGuard.test_outcome_epoch_cannot_be_substituted) ... ok
+
+======================================================================
+FAIL: test_existing_empty_fault_record_is_not_treated_as_absent (test_result_guard.ResultGuard.test_existing_empty_fault_record_is_not_treated_as_absent) (payload={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/lbpm-integration-work/repo/production-runner/tests/test_result_guard.py", line 80, in test_existing_empty_fault_record_is_not_treated_as_absent
+    with self.assertRaises(EpochRejected): verify_result(self.root,self.rel)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: EpochRejected not raised
+
+======================================================================
+FAIL: test_existing_empty_fault_record_is_not_treated_as_absent (test_result_guard.ResultGuard.test_existing_empty_fault_record_is_not_treated_as_absent) (payload=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/lbpm-integration-work/repo/production-runner/tests/test_result_guard.py", line 80, in test_existing_empty_fault_record_is_not_treated_as_absent
+    with self.assertRaises(EpochRejected): verify_result(self.root,self.rel)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: EpochRejected not raised
+
+======================================================================
+FAIL: test_existing_empty_fault_record_is_not_treated_as_absent (test_result_guard.ResultGuard.test_existing_empty_fault_record_is_not_treated_as_absent) (payload=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/lbpm-integration-work/repo/production-runner/tests/test_result_guard.py", line 80, in test_existing_empty_fault_record_is_not_treated_as_absent
+    with self.assertRaises(EpochRejected): verify_result(self.root,self.rel)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: EpochRejected not raised
+
+======================================================================
+FAIL: test_existing_empty_fault_record_is_not_treated_as_absent (test_result_guard.ResultGuard.test_existing_empty_fault_record_is_not_treated_as_absent) (payload=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/lbpm-integration-work/repo/production-runner/tests/test_result_guard.py", line 80, in test_existing_empty_fault_record_is_not_treated_as_absent
+    with self.assertRaises(EpochRejected): verify_result(self.root,self.rel)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: EpochRejected not raised
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.076s
+
+FAILED (failures=4)

@@ -1,0 +1,40 @@
+name = "GW-Ca1p5e4-R2-v1"
+
+[physics]
+capillary_number = 0.00015
+rhoA = 0.10
+rhoB = 0.10
+tauA = 0.78
+tauB = 0.92
+alpha = 0.009
+beta = 0.90
+affinity = 0.2588190451
+wetting_convention = "SCAL"
+nominal_water_contact_angle_deg = 75.0
+
+[domain]
+nx = 128
+ny = 128
+nz = 128
+reservoir_layers = 3
+voxel_length_um = 1.0
+bc = 4
+
+[stopping]
+check_pvi = 0.1
+max_pvi = 3.6
+window_points = 5
+
+[stopping.standard]
+start_pvi = 0.5
+max_dsg = 0.0030
+range_sg = 0.0060
+max_flip = 0.0100
+consecutive = 4
+
+[stopping.accepted]
+start_pvi = 3.0
+max_dsg = 0.008
+range_sg = 0.025
+max_flip = 0.030
+consecutive = 3
